@@ -22,12 +22,12 @@ val sparkVersionParameterOption = Option(System.getProperty("spark.version"))
 
 val sversion = scalaVersionParameterOption match {
   case Some(x) => x
-  case None => "2.11.2"
+  case None => "2.11.8"
 }
 
 val sparkVersion = sparkVersionParameterOption match {
   case Some(x) => x
-  case None => "2.0.0"
+  case None => "2.1.0"
 }
 
 assemblyJarName in assembly := "SciSpark.jar"
@@ -46,6 +46,7 @@ scalacOptions := Seq("-feature", "-deprecation")
 mainClass in (Compile, packageBin) := Some("org.dia.apps.MCCApp")
 
 resolvers ++= Seq(
+  Resolver.bintrayIvyRepo("com.eed3si9n", "sbt-plugins"),
   Resolver.mavenLocal,
   Resolver.file("Local", file(Path.userHome.absolutePath + "/.ivy2/local"))(Resolver.ivyStylePatterns),
   "maven Repository" at "http://artifacts.unidata.ucar.edu/content/repositories/unidata-releases/"
